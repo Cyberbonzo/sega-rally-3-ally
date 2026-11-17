@@ -2,6 +2,7 @@
 import ctypes as C
 import os,signal,struct,time,json,socket,subprocess
 from pathlib import Path
+from difficulty import LEVELS, choose
 from pause import Pause
 from pause_menu import Menu
 from progress import backup,Runtime
@@ -101,6 +102,11 @@ try:
     if now-last_pids>1:pids=game_pids();last_pids=now
     try:progress.tick(pids)
     except (OSError,ValueError,struct.error) as exc:print('Progress retry:',type(exc).__name__,flush=True)
+    if paused and was_paused and ((9 in edge) != (10 in edge)):
+        step = 1 if 10 in edge else -1
+        level = LEVELS[(LEVELS.index(menu.next_level) + step) % len(LEVELS)]
+        choose(level)
+        menu.next_level = level
     if paused and now-last_menu>.1:
         menu.draw();last_menu=now
     bits=0

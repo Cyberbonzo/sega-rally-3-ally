@@ -1,12 +1,15 @@
 """English pause menu, rendered locally with SDL2 and the system font."""
 import ctypes as C
 import os,subprocess
+from difficulty import selected
 from PIL import Image,ImageDraw,ImageFont
 
 class Menu:
     def __init__(self,sdl):
         self.s=sdl;self.window=None;self.renderer=None;self.texture=None
-        self.selected=0;self.last=None;self.infinite=False
+        self.selected=0;self.last=None
+        self.active_level=os.environ.get('SR3_ACTIVE_DIFFICULTY') or selected()
+        self.next_level=selected()
         def bind(n,r,a):
             f=getattr(sdl,n);f.restype=r;f.argtypes=a;return f
         self.init=bind('SDL_InitSubSystem',C.c_int,[C.c_uint32])
@@ -42,7 +45,7 @@ class Menu:
 
     def draw(self):
         if not self.window:return
-        state=(self.selected,self.infinite)
+        state=(self.selected,self.next_level)
         if state!=self.last:
             im=Image.new('RGBA',(1920,1080),(7,13,23,255));d=ImageDraw.Draw(im)
             def text(x,y,t,size=36,color='#edf4ff'):
@@ -57,6 +60,9 @@ class Menu:
                 y=420+i*135;active=self.selected==i
                 d.rounded_rectangle((190,y,1730,y+110),radius=14,fill='#14364d' if active else '#101f2d',outline='#34d4f4' if active else '#22364a',width=3)
                 text(235,y+32,label,34)
+            text(190,570,'DIFFICULTY   ' + self.active_level.upper(),40)
+            change = 'LB / RB   CHANGE DIFFICULTY' if self.next_level == self.active_level else 'NEXT LAUNCH   ' + self.next_level.upper() + '     LB / RB   CHANGE'
+            text(190,635,change,28,'#95a8ba')
             text(190,715,'CONTROLS',23,'#5fa7be')
             text(190,765,'LEFT STICK   STEER     RT   GAS / CONFIRM     LT   BRAKE',29,'#95a8ba')
             text(190,820,'A   START     B   HANDBRAKE     X   VIEW',29,'#95a8ba')

@@ -6,6 +6,7 @@
 !VERSION
 !jogar.sh
 !source/run.py
+!source/difficulty.py
 !source/controls.py
 !source/pause.py
 !source/pause_menu.py

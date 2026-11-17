@@ -1,3 +1,7 @@
+# 0.1.1
+
+- Added Very Easy with extra starting and checkpoint time. Select the next difficulty with LB/RB in the pause menu.
+
 # 0.1.0
 
 - ROG Ally controls, native 1080p 16:9 fullscreen and 60 FPS cap.

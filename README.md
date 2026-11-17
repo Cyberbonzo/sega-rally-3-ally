@@ -1,10 +1,10 @@
 # SEGA Rally 3 â€” ROG Ally / Bazzite
 
-Version 0.1.0. Launcher and handheld controls for your own copy of the 2008 arcade game. No game data, executable, dependency DLL, artwork or save is distributed here.
+Version 0.1.1. Launcher and handheld controls for your own copy of the 2008 arcade game. No game data, executable, dependency DLL, artwork or save is distributed here.
 
 Runs through an existing GE-Proton11-12 installation. Uses the open Windows Arcade Loader Europa-R module to emulate cabinet inputs. The original Rally.exe stays unchanged.
 
-Features: 1920Ã—1080 fullscreen at native 16:9, a 60 FPS cap, English, km/h, Easy difficulty, free play, offline cabinet settings, analog steering/pedals and an English pause screen. The pause excludes suspended time from the game's QPC, GetTickCount and timeGetTime clocks. Native high-score files stay in the game directory and receive versioned local backups. A checksum-validated checkpoint of the pointer-free native score table is saved automatically from memory and loaded on the next launch when newer than the native file. Names, cars, transmissions and times in those records are retained. This arcade edition has no cumulative points career or unlockable garage; available cars depend on the game mode. This is not a mid-race save state.
+Features: 1920Ã—1080 fullscreen at native 16:9, a 60 FPS cap, English, km/h, Very Easy difficulty by default, free play, offline cabinet settings, analog steering/pedals and an English pause screen. The pause excludes suspended time from the game's QPC, GetTickCount and timeGetTime clocks. Native high-score files stay in the game directory and receive versioned local backups. A checksum-validated checkpoint of the pointer-free native score table is saved automatically from memory and loaded on the next launch when newer than the native file. Names, cars, transmissions and times in those records are retained. This arcade edition has no cumulative points career or unlockable garage; available cars depend on the game mode. This is not a mid-race save state.
 
 ## Controls
 
@@ -19,6 +19,13 @@ Features: 1920Ã—1080 fullscreen at native 16:9, a 60 FPS cap, English, km/h, 
 | LB / RB | Shift down / up |
 | Menu | Pause / resume |
 | A or B while paused | Resume |
+| LB / RB while paused | Select difficulty for the next launch |
+
+## Difficulty
+
+Very Easy keeps the arcade Easy opponent settings. Each timed event starts with 20 extra seconds, and each checkpoint or lap that awards time grants 10 extra seconds. Each individual award is capped at 99 seconds. Lap and record times use the original clock.
+
+Press Menu and use LB or RB to select Very Easy, Easy, Medium or Hard. Restart the game to apply your selection. The launcher verifies your own arcade database, backs it up in `saves/original` and restores it when you select a stock difficulty.
 
 ## Setup
 
